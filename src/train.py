@@ -54,6 +54,10 @@ def train():
         mlflow.log_metrics({"smape": metrics["smape"], "rmse": metrics["rmse"]})
         mlflow.log_param("best_model", metrics["best_model"])
         mlflow.log_param("training_time_sec", elapsed)
+        mlflow.log_artifact(f"{FIGURES_DIR}/predictions.png")
+        mlflow.log_artifact(f"{FIGURES_DIR}/feature_importance.png")
+        mlflow.log_artifact(f"{TABLES_DIR}/leaderboard.csv")
+        mlflow.log_artifact(f"{TABLES_DIR}/metrics.json")
 
         save_metrics(metrics)
         plot_predictions(val_part[TARGET_COL], preds)

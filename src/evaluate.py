@@ -7,13 +7,16 @@ from src.config import FIGURES_DIR, TABLES_DIR
 def smape(actual, predicted):
     actual    = np.array(actual,    dtype=float)
     predicted = np.array(predicted, dtype=float)
-    mask = (actual != 0) | (predicted != 0)
-    return 100 * np.mean(2 * np.abs(predicted[mask] - actual[mask]) / (np.abs(actual[mask]) + np.abs(predicted[mask])))
+    denominator = np.abs(actual) + np.abs(predicted)
+    mask = denominator > 0
+    return 100 * np.mean(2 * np.abs(predicted[mask] - actual[mask]) / denominator[mask])
 
 def save_metrics(metrics: dict):
+    import math
+    cleaned = {k: (None if isinstance(v, float) and math.isnan(v) else v) for k, v in metrics.items()}
     path = f"{TABLES_DIR}/metrics.json"
     with open(path, "w") as f:
-        json.dump(metrics, f, indent=2)
+        json.dump(cleaned, f, indent=2)
     print(f"Метрики сохранены: {path}")
 
 def plot_predictions(actual, predicted):
