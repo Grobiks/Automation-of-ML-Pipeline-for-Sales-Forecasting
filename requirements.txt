@@ -1,0 +1,11 @@
+pandas
+numpy
+scikit-learn
+h2o
+mlflow
+pytest
+matplotlib
+seaborn
+pyarrow
+psutil
+kaggle

@@ -1,0 +1,6 @@
+{
+  "smape": NaN,
+  "rmse": 64.1384,
+  "training_time_sec": 1802.7,
+  "best_model": "gbm"
+}
