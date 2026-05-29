@@ -116,8 +116,6 @@ python -m src.train
 
 ## 7. Визуализации
 
-## 7. Визуализации
-
 ### Прогноз vs Факт
 ![Predictions](reports/figures/predictions.png)
 
