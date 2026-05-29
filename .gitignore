@@ -9,5 +9,4 @@ data/processed/
 models/
 mlruns/
 mlflow.db
-reports/
 .pytest_cache/

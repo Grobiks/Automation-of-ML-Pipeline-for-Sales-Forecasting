@@ -1,0 +1,6 @@
+{
+  "smape": 15.489,
+  "rmse": 64.1384,
+  "training_time_sec": 1803.3,
+  "best_model": "gbm"
+}
