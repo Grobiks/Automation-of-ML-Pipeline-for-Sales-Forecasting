@@ -116,8 +116,22 @@ python -m src.train
 
 ## 7. Визуализации
 
+## 7. Визуализации
+
+### Прогноз vs Факт
 ![Predictions](reports/figures/predictions.png)
+
+### Важность признаков
 ![Feature Importance](reports/figures/feature_importance.png)
+
+### MLflow — метрики эксперимента
+![MLflow Run](reports/figures/mlflow_run.png)
+
+### H2O — список обученных моделей
+![H2O Models](reports/figures/h2o_models.png)
+
+### Мониторинг инфраструктуры
+![Monitoring](reports/figures/monitoring_terminal.png)
 
 ---
 
@@ -168,6 +182,20 @@ docker compose up mlflow
 ```
 
 Контейнер сохраняет результаты в локальные папки `models/`, `reports/`, `mlruns/` через volumes.
+
+### Описание команд Dockerfile
+
+| Команда | Описание |
+|---|---|
+| `FROM python:3.13-slim` | Базовый образ — лёгкая версия Python 3.13 |
+| `RUN apt-get install openjdk-21` | Устанавливаем Java — нужна для H2O |
+| `ENV JAVA_HOME=...` | Указываем путь к Java для системы |
+| `WORKDIR /app` | Рабочая директория внутри контейнера |
+| `COPY requirements.txt .` | Копируем список зависимостей |
+| `RUN pip install -r requirements.txt` | Устанавливаем все Python библиотеки |
+| `COPY src/ ./src/` | Копируем исходный код |
+| `COPY data/ ./data/` | Копируем данные |
+| `CMD ["python", "-m", "src.train"]` | Команда запуска при старте контейнера |
 
 ---
 
