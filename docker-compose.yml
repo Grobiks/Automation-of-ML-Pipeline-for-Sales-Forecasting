@@ -1,0 +1,19 @@
+services:
+  pipeline:
+    build: .
+    volumes:
+      - ./models:/app/models
+      - ./reports:/app/reports
+      - ./mlruns:/app/mlruns
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  mlflow:
+    image: python:3.13-slim
+    working_dir: /app
+    volumes:
+      - ./mlruns:/app/mlruns
+    ports:
+      - "5000:5000"
+    command: >
+      sh -c "pip install mlflow -q && mlflow ui --host 0.0.0.0 --port 5000"
